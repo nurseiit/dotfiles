@@ -175,3 +175,6 @@ export PATH=$PATH:$ANDROID_HOME/tools
 
 export NVM_DIR="/home/nurs/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+### Prompt style
+export PS1="\033[0;33m\h:\W \u\$ \e[m"
