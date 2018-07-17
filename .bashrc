@@ -177,4 +177,13 @@ export NVM_DIR="/home/nurs/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 ### Prompt style
-export PS1="\033[0;33m\h:\W \u\$ \e[m"
+#export PS1="\033[0;33m\h:\W \u\$ \e[m"
+
+# Git branch in prompt.
+force_color_prompt=yes
+color_prompt=yes
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\033[0;33m\u:\W\e[m\[\033[32m\]\$(parse_git_branch)\[\033[00m\]$ "
+

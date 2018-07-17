@@ -1,8 +1,31 @@
+
+" Automatic installation for vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install plugins here
+call plug#begin()
+Plug 'sheerun/vim-polyglot'
+Plug 'trevordmiller/nova-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdtree'
+call plug#end()
+
 " ---------------------- USABILITY CONFIGURATION ----------------------
 "  Basic and pretty much needed settings to provide a solid base for
 "  source code editting
 
-" don't make vim compatible with vi 
+" don't make vim compatible with vi
 set nocompatible
 
 " turn on syntax highlighting
@@ -16,7 +39,7 @@ filetype plugin on
 filetype indent on
 
 " reload files changed outside vim
-set autoread         
+set autoread
 
 " encoding is utf 8
 set encoding=utf-8
@@ -25,7 +48,7 @@ set fileencoding=utf-8
 " enable matchit plugin which ships with vim and greatly enhances '%'
 runtime macros/matchit.vim
 
-" by default, in insert mode backspace won't delete over line breaks, or 
+" by default, in insert mode backspace won't delete over line breaks, or
 " automatically-inserted indentation, let's change that
 set backspace=indent,eol,start
 
@@ -84,7 +107,7 @@ set guifont=Source\ Code\ Pro
 " allow Tab and Shift+Tab to
 " tab  selection in visual mode
 vmap <Tab> >gv
-vmap <S-Tab> <gv 
+vmap <S-Tab> <gv
 
 " remove the .ext~ files, but not the swapfiles
 set nobackup
@@ -95,7 +118,7 @@ set noswapfile
 set incsearch        " find the next match as we type the search
 set hlsearch         " hilight searches by default
 " use ESC to remove search higlight
-nnoremap <esc> :noh<return><esc>
+"nnoremap <esc> :noh<return><esc>
 
 " most of the time I should use ` instead of ' but typing it with my keyabord
 " is a pain, so just toggle them
@@ -106,17 +129,17 @@ nnoremap ` '
 set wildmode=list:longest
 
 " keep the cursor visible within 3 lines when scrolling
-set scrolloff=3
+set scrolloff=7
 
 " indentation
 set expandtab       " use spaces instead of tabs
 set autoindent      " autoindent based on line above, works most of the time
 set smartindent     " smarter indent for C-like languages
-set shiftwidth=4    " when reading, tabs are 4 spaces
-set softtabstop=4   " in insert mode, tabs are 4 spaces
+set shiftwidth=2   " when reading, tabs are 4 spaces
+set softtabstop=2   " in insert mode, tabs are 4 spaces
 
 " no lines longer than 80 cols
-set textwidth=80
+set textwidth=130
 
 " use <C-Space> for Vim's keyword autocomplete
 "  ...in the terminal
@@ -151,31 +174,6 @@ endif
 " select all mapping
 noremap <leader>a ggVG
 
-" ---------------------- PLUGIN CONFIGURATION ----------------------
-" initiate Vundle
-let &runtimepath.=',$HOME/.vim/bundle/Vundle.vim'
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" start plugin defintion
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/L9'
-Plugin 'vim-scripts/FuzzyFinder'
-Plugin 'itchyny/lightline.vim'      
-Plugin 'Lokaltog/vim-easymotion'    
-Plugin 'tpope/vim-surround'         
-" -- Web Development
-Plugin 'Shutnik/jshint2.vim'        
-Plugin 'mattn/emmet-vim'            
-Plugin 'kchmck/vim-coffee-script'   
-Plugin 'groenewege/vim-less'        
-Plugin 'skammer/vim-css-color'      
-Plugin 'hail2u/vim-css3-syntax'     
-Plugin 'digitaltoad/vim-jade'       
-
-" end plugin definition
-call vundle#end()            " required for vundle
 
 " start NERDTree on start-up and focus active window
 autocmd VimEnter * NERDTree
@@ -192,9 +190,23 @@ let g:user_emmet_leader_key = '<c-e>'
 " this requires the jsHint2 plugin
 autocmd BufWritePost *.js silent :JSHint
 
-" set the color theme to wombat256
-colorscheme wombat256mod
+" set the color theme to nova
+colorscheme nova
 " make a mark for column 80
-set colorcolumn=80
+set colorcolumn=140
 " and set the mark color to DarkSlateGray
-highlight ColorColumn ctermbg=lightgray guibg=lightgray
+
+highlight ColorColumn ctermbg=gray guibg=gray
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Emmet configs
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
+
