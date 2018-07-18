@@ -19,6 +19,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
+" Autofix
+Plug 'w0rp/ale'
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 " ---------------------- USABILITY CONFIGURATION ----------------------
@@ -89,18 +92,7 @@ vm <c-c> "+y
 cno <c-v> <c-r>+
 exe 'ino <script> <C-V>' paste#paste_cmd['i']
 
-" save with ctrl+s
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
-
-" hide unnecessary gui in gVim
-if has("gui_running")
-    set guioptions-=m  " remove menu bar
-    set guioptions-=T  " remove toolbar
-    set guioptions-=r  " remove right-hand scroll bar
-    set guioptions-=L  " remove left-hand scroll bar
-end
-
+    
 " set Adobe's Source Code Pro font as default
 set guifont=Source\ Code\ Pro
 
@@ -117,13 +109,6 @@ set noswapfile
 " search settings
 set incsearch        " find the next match as we type the search
 set hlsearch         " hilight searches by default
-" use ESC to remove search higlight
-"nnoremap <esc> :noh<return><esc>
-
-" most of the time I should use ` instead of ' but typing it with my keyabord
-" is a pain, so just toggle them
-nnoremap ' `
-nnoremap ` '
 
 " suggestion for normal mode commands
 set wildmode=list:longest
@@ -138,7 +123,7 @@ set smartindent     " smarter indent for C-like languages
 set shiftwidth=2   " when reading, tabs are 4 spaces
 set softtabstop=2   " in insert mode, tabs are 4 spaces
 
-" no lines longer than 80 cols
+" no lines longer than 130 cols
 set textwidth=130
 
 " use <C-Space> for Vim's keyword autocomplete
@@ -179,20 +164,12 @@ noremap <leader>a ggVG
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
-" map FuzzyFinder
-noremap <leader>b :FufBuffer<cr>
-noremap <leader>f :FufFile<cr>
-
 " use zencoding with <C-E>
 let g:user_emmet_leader_key = '<c-e>'
 
-" run JSHint when a file with .js extension is saved
-" this requires the jsHint2 plugin
-autocmd BufWritePost *.js silent :JSHint
-
 " set the color theme to nova
 colorscheme nova
-" make a mark for column 80
+" make a mark for column 140
 set colorcolumn=140
 " and set the mark color to DarkSlateGray
 
@@ -209,4 +186,13 @@ let g:user_emmet_settings = {
     \      'extends' : 'jsx',
     \  },
   \}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
+" Autofix when saved
+autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
 
