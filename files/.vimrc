@@ -18,6 +18,7 @@ Plug 'w0rp/ale'
 Plug 'wakatime/vim-wakatime'
 Plug 'pangloss/vim-javascript' " dependency for 'mxw/vim-jsx'
 Plug 'mxw/vim-jsx'
+Plug 'mattn/emmet-vim'         " quick web/dev complete
 call plug#end()
 
 " NOVA-VIM
@@ -26,6 +27,12 @@ colorscheme nova
 " run NERDTree on start-up and focus active window
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+
+" Tab for Emmet completion, to work only in these FileTypes
+autocmd FileType html,css,typescript,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" Only allow Emmet in these FileTypes
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,typescript,javascript.jsx EmmetInstall
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ALE config

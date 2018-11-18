@@ -14,6 +14,9 @@
 # Anaconda Path
   export PATH=$HOME/.anaconda3/bin:$PATH
 
+# Yarn binaries
+  export PATH=$HOME/.yarn/bin:$PATH
+
 # NVM Paths
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
