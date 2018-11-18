@@ -14,6 +14,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'trevordmiller/nova-vim'
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree'
+Plug 'w0rp/ale'
+Plug 'wakatime/vim-wakatime'
+Plug 'pangloss/vim-javascript' " dependency for 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 call plug#end()
 
 " NOVA-VIM
@@ -22,6 +26,27 @@ colorscheme nova
 " run NERDTree on start-up and focus active window
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_sign_error = '●'   " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0  " Less distracting when opening a new file
+
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\  'sh': ['shell'],
+\  'javascript': ['eslint'],
+\}
+let g:ale_fixers = {
+\  'sh': ['shfmt'],
+\  'javascript': ['prettier', 'eslint'],
+\  'json': ['prettier'],
+\  'markdown': ['prettier'],
+\  'yaml': ['prettier'],
+\  'css': ['prettier'],
+\}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Core
