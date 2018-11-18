@@ -1,16 +1,15 @@
 [user]
-  name = Trevor D. Miller
-  email = trevordmiller@icloud.com
+  name = Nurseiit Abdimomyn
+  email = nurseyit.abdimomyn@gmail.com
   useconfigonly = true
 [github]
-  user = trevordmiller
+  user = nurseiit
 [commit]
   verbose = true
 [push]
   default = simple
 [core]
   editor = vim
-  excludesfile = /Users/trevordmiller/.gitignore
 [log]
   date = relative
 [format]
@@ -70,5 +69,3 @@
   selected = normal
   separator = red bold
   linenumber = normal
-[url "https://"]
-  insteadOf = git://
