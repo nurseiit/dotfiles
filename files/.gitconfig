@@ -8,6 +8,8 @@
   verbose = true
 [push]
   default = simple
+[merge]
+  ff = no
 [core]
   editor = vim
 [log]
