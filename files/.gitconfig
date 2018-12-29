@@ -2,6 +2,7 @@
   name = Nurseiit Abdimomyn
   email = nurseyit.abdimomyn@gmail.com
   useconfigonly = true
+	signingkey = nurseyit.abdimomyn@gmail.com
 [github]
   user = nurseiit
 [commit]
