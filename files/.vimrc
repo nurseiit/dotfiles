@@ -15,7 +15,7 @@ Plug 'trevordmiller/nova-vim'
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 Plug 'pangloss/vim-javascript' " dependency for 'mxw/vim-jsx'
 Plug 'mxw/vim-jsx'
 Plug 'mattn/emmet-vim'         " quick web/dev complete
