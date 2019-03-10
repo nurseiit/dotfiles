@@ -55,3 +55,6 @@ inoremap <C-Space> <C-n>
 
 " Performance
 set synmaxcol=200
+
+" Encoding
+set encoding=utf-8
