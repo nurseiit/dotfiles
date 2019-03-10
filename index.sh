@@ -57,3 +57,16 @@ for dot_file in "${dot_files[@]}"; do
   fi
   ln -s "$(pwd)/files/$dot_file" ~/$dot_file
 done
+
+reset
+printf "${GREEN}"
+echo ''
+echo 'WELCOME'
+echo ''
+echo '  _   _       _   _    ____     ____    '
+echo ' | \ |"|   U |"|u| |U |  _"\ u / __"| u '
+echo '<|  \| |>   \| |\| | \| |_) |/<\___ \/  '
+echo 'U| |\  |u    | |_| |  |  _ <   u___) |  '
+echo ' |_| \_|    <<\___/   |_| \_\  |____/>> '
+echo ' ||   \\,-.(__) )(    //   \\_  )(  (__)'
+echo ' (_")  (_/     (__)  (__)  (__)(__)     '
