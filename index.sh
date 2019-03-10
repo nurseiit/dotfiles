@@ -27,6 +27,20 @@ echo "${BOLD}Installing Oh-My-Zsh${NORMAL}"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 
+echo "${BOLD}Installing Spaceship theme for Oh-My-Zsh${NORMAL}"
+# Check if the theme is installed already
+if [ -f "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme" ] || [ -h "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme" ]; then
+  printf "${YELLOW}Spaceship theme is already installed. ${GREEN}Skipping...${NORMAL}\n"
+else
+  # Cloning theme files
+  env git clone https://github.com/denysdovhan/spaceship-prompt.git "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt" || {
+    printf "${RED}Error: git clone of Spaceship-Prompt repo failed${NORMAL}\n"
+    exit 1
+  }
+  ln -s "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+fi
+
+
 echo "${BOLD}Symlinking dotfiles${NORMAL}"
 
 dot_files=(
