@@ -1,8 +1,7 @@
 [user]
   name = Nurseiit Abdimomyn
-  email = nurseyit.abdimomyn@gmail.com
+  email = nurs@unist.ac.kr
   useconfigonly = true
-	signingkey = nurseyit.abdimomyn@gmail.com
 [github]
   user = nurseiit
 [commit]
