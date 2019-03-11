@@ -1,16 +1,15 @@
 [user]
   name = Nurseiit Abdimomyn
-  email = nurseyit.abdimomyn@gmail.com
+  email = nurs@unist.ac.kr
   useconfigonly = true
-	signingkey = nurseyit.abdimomyn@gmail.com
 [github]
   user = nurseiit
 [commit]
   verbose = true
 [push]
   default = simple
-[merge]
-  ff = no
+# [merge]
+#   ff = no
 [core]
   editor = vim
 [log]

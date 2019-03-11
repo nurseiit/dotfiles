@@ -3,26 +3,12 @@
 # ===============================================
   export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Go Path
-  export GOPATH=$HOME/go
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-# Install Ruby Gems to ~/gems
-  export GEM_HOME=$HOME/gems
-  export PATH=$HOME/gems/bin:$PATH
-
-# Anaconda Path
-  source /home/me/.anaconda3/etc/profile.d/conda.sh
-  export PATH=$HOME/.anaconda3/bin:$PATH
-
-# Yarn binaries
-  export PATH=$HOME/.yarn/bin:$PATH
-
 # NVM Paths
-  export NVM_DIR="$HOME/.nvm"
-  . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
+# (TODO) Add Paths
 
 # NVM auto 'nvm use' when entered a dir with .nvmrc
+# Turn off to speed up terminal launch
+# ===============================================
 #  autoload -U add-zsh-hook
 #  load-nvmrc() {
 #    local node_version="$(nvm version)"
@@ -45,7 +31,7 @@
 #  load-nvmrc
   
 # Path to 'oh-my-zsh' installation
-  export ZSH="/home/me/.oh-my-zsh"
+  export ZSH="$HOME/.oh-my-zsh"
 
 # Name of the theme to load
   ZSH_THEME="spaceship"
