@@ -23,7 +23,7 @@ else
 fi
 
 # Check if `zsh` is present.
-if ! command -v zsh >/dev/null 2>&1; then
+if command -v zsh >/dev/null 2>&1; then
   echo "${BOLD}Installing Oh-My-Zsh${NORMAL}"
 
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
