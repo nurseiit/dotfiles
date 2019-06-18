@@ -3,6 +3,15 @@
 # ===============================================
   export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Flutter PATH
+  export PATH=$HOME/Dev/flutter/bin:$PATH
+
+# NodeJS PATH
+  export PATH="/usr/local/opt/node@10/bin:$PATH"
+
+# Pub PATH
+  export PATH="$PATH":"$HOME/.pub-cache/bin"
+
 # NVM Paths
 # (TODO) Add Paths
 
