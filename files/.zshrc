@@ -3,14 +3,17 @@
 # ===============================================
   export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Flutter PATH
+# Flutter
   export PATH=$HOME/Dev/flutter/bin:$PATH
 
-# NodeJS PATH
+# NodeJS
   export PATH="/usr/local/opt/node@10/bin:$PATH"
 
-# Pub PATH
+# Pub
   export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# Faslane
+  export PATH="$HOME/.fastlane/bin:$PATH"
 
 # NVM Paths
 # (TODO) Add Paths
