@@ -11,7 +11,12 @@
 # [merge]
 #   ff = no
 [core]
-  editor = vim
+  editor = gvim
+# called as `git ignore [fileName]` 
+[alias]
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
+  ignored = !git ls-files -v | grep "^[[:lower:]]"
 [log]
   date = relative
 [format]
