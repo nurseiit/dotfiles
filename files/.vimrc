@@ -19,7 +19,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript' " dependency for 'mxw/vim-jsx'
 Plug 'mxw/vim-jsx'
-Plug 'mattn/emmet-vim'         " quick web/dev complete
+" Plug 'mattn/emmet-vim'         " quick web/dev complete
 
 " Flutter Plugins
 Plug 'dart-lang/dart-vim-plugin'
@@ -38,10 +38,10 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 " Tab for Emmet completion, to work only in these FileTypes
-autocmd FileType html,css,typescript,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" autocmd FileType html,css,typescript,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " Only allow Emmet in these FileTypes
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,typescript,javascript.jsx EmmetInstall
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css,typescript,javascript.jsx EmmetInstall
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ALE config
@@ -111,7 +111,7 @@ set updatetime=300
 set shortmess+=c
 
 " always show signcolumns
-set signcolumn=yes
+" set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -132,6 +132,9 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Open a dialog for CocFix
+nnoremap <leader>cf :CocFix<cr>
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
