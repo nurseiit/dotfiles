@@ -84,3 +84,11 @@ echo 'U| |\  |u    | |_| |  |  _ <   u___) |  '
 echo ' |_| \_|    <<\___/   |_| \_\  |____/>> '
 echo ' ||   \\,-.(__) )(    //   \\_  )(  (__)'
 echo ' (_")  (_/     (__)  (__)  (__)(__)     '
+
+echo ''
+printf "${YELLOW}"
+echo 'ℹ️ You might wanna run these to install your fonts:'
+printf "${BOLD}"
+echo '    $ brew tap homebrew/cask-fonts'
+echo '    $ brew cask install font-sourcecodepro-nerd-font'
+echo ''
