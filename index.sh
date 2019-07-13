@@ -59,6 +59,19 @@ for dot_file in "${dot_files[@]}"; do
   ln -s "$(pwd)/files/$dot_file" ~/$dot_file
 done
 
+dot_folders=(
+  ".vim"
+)
+
+for dot_folder in "${dot_folders[@]}"; do
+  printf "${BLUE}Looking for an existing $dot_folder folder...${NORMAL}\n"
+  if [ -f ~/$dot_folder ] || [ -h ~/$dot_folder ]; then
+    printf "${YELLOW}Found ~/$dot_folder. ${GREEN}Backing up to ~/$dot_folder.old${NORMAL}\n";
+    mv ~/$dot_folder ~/$dot_folder.old;
+  fi
+  ln -s "$(pwd)/$dot_folder" ~/$dot_folder
+done
+
 reset
 printf "${GREEN}"
 echo ''
