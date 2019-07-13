@@ -92,3 +92,8 @@ printf "${BOLD}"
 echo '    $ brew tap homebrew/cask-fonts'
 echo '    $ brew cask install font-sourcecodepro-nerd-font'
 echo ''
+echo '${YELLOW}To install dart-lang server:'
+printf "${BOLD}"
+echo '    $ pub global activate dart_language_server'
+echo ''
+
