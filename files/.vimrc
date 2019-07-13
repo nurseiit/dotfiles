@@ -13,7 +13,12 @@ let g:flutter_hot_reload_on_save = 1
 
 call plug#begin()
 Plug 'sheerun/vim-polyglot'
-Plug 'trevordmiller/nova-vim'
+" Plug 'trevordmiller/nova-vim'
+
+" Themes and Icons
+Plug 'mhartington/oceanic-next'
+Plug 'ryanoasis/vim-devicons'
+
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
@@ -30,8 +35,16 @@ Plug 'thosakwe/vim-flutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-" NOVA-VIM
-colorscheme nova
+" Theme
+syntax enable
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+colorscheme OceanicNext
+set guifont=SauceCodePro_Nerd_Font:h11
+" colorscheme nova
 
 " run NERDTree on start-up and focus active window
 autocmd VimEnter * NERDTree
@@ -87,9 +100,6 @@ set softtabstop=2   " in insert mode, tabs are 2 spaces
 
 " keep the cursor visible within 7 lines when scrolling
 set scrolloff=7
-
-" set Adobe's Source Code Pro font as default
-set guifont=Source\ Code\ Pro
 
 " Performance
 set synmaxcol=200
