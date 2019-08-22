@@ -13,8 +13,8 @@ let g:flutter_hot_reload_on_save = 1
 
 call plug#begin()
 Plug 'sheerun/vim-polyglot'
-" Plug 'trevordmiller/nova-vim'
-
+" Editing and Navigation
+Plug 'tpope/vim-surround'
 " Themes and Icons
 Plug 'mhartington/oceanic-next'
 Plug 'ryanoasis/vim-devicons'
@@ -33,6 +33,9 @@ Plug 'thosakwe/vim-flutter'
 " Completion 'https://github.com/neoclide/coc.nvim'
 " Should have nodeJS installed
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Syntax for Firestore Rules
+Plug 'delphinus/vim-firestore'
 call plug#end()
 
 " Theme
@@ -69,23 +72,27 @@ let g:ale_linters = {
 \  'sh': ['shell'],
 \  'dart': ['language_server'],
 \  'javascript': ['eslint'],
+\  'typescript': ['eslint']
 \}
 let g:ale_fixers = {
 \  'dart': ['dartfmt'],
 \  'sh': ['shfmt'],
 \  'javascript': ['prettier', 'eslint'],
+\  'typescript': ['prettier', 'eslint'],
 \  'json': ['prettier'],
 \  'markdown': ['prettier'],
 \  'yaml': ['prettier'],
 \  'css': ['prettier'],
 \}
+let g:ale_echo_msg_format = '%linter% says %s'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Core
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Lines
-set number
+" set number
+set relativenumber
 set cursorline
 
 " Remove the .ext~ files, but not the swapfiles

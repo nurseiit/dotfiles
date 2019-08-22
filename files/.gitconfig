@@ -11,7 +11,7 @@
 # [merge]
 #   ff = no
 [core]
-  editor = gvim
+  editor = vim
 # called as `git ignore [fileName]` 
 [alias]
   ignore = update-index --assume-unchanged
