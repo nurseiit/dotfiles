@@ -15,8 +15,9 @@
 # Fastlane
   export PATH="$HOME/.fastlane/bin:$PATH"
 
-# gem exec-s
-  export PATH="$PATH":"$HOME/.gem/ruby/2.3.0/bin"
+# rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
 
 # Conda
   export PATH="$HOME/miniconda3/bin:$PATH"
@@ -51,3 +52,8 @@ jumpto () {
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+PATH=$PATH:/opt/metasploit-framework/bin
+export PATH=$PATH:/opt/metasploit-framework/bin
