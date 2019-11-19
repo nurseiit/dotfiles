@@ -3,22 +3,26 @@ set -euo pipefail
 
 # Use colors, but only if connected to a terminal, 
 # and that terminal supports colors.
-if which tput >/dev/null 2>&1; then
-    ncolors=$(tput colors)
-    if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
-      RED="$(tput setaf 1)"
-      GREEN="$(tput setaf 2)"
-      YELLOW="$(tput setaf 3)"
-      BLUE="$(tput setaf 4)"
-      BOLD="$(tput bold)"
-      NORMAL="$(tput sgr0)"
-    else
-      RED=""
-      GREEN=""
-      YELLOW=""
-      BLUE=""
-      BOLD=""
-      NORMAL=""
+# Fallback colors.
+RED=""
+GREEN=""
+YELLOW=""
+BLUE=""
+BOLD=""
+NORMAL=""
+
+# check if interactive
+if [[ $- == *i* ]]; then
+    if which tput >/dev/null 2>&1; then
+        ncolors=$(tput colors)
+        if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+          RED="$(tput setaf 1)"
+          GREEN="$(tput setaf 2)"
+          YELLOW="$(tput setaf 3)"
+          BLUE="$(tput setaf 4)"
+          BOLD="$(tput bold)"
+          NORMAL="$(tput sgr0)"
+        fi
     fi
 fi
 
