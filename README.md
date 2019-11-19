@@ -12,11 +12,7 @@ cd my-dot-rcs
 ```
 3. Run the Installation script
 ```
-bash index.sh
+./index.sh
 ```
 
 Done!
-
-### Possible Errors
-#### Files already exist
-* You can remove or move those files elsewhere from Home folder
