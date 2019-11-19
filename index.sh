@@ -3,23 +3,27 @@ set -euo pipefail
 
 # Use colors, but only if connected to a terminal, 
 # and that terminal supports colors.
-if which tput >/dev/null 2>&1; then
-    ncolors=$(tput colors)
-fi
-if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
-  RED="$(tput setaf 1)"
-  GREEN="$(tput setaf 2)"
-  YELLOW="$(tput setaf 3)"
-  BLUE="$(tput setaf 4)"
-  BOLD="$(tput bold)"
-  NORMAL="$(tput sgr0)"
-else
-  RED=""
-  GREEN=""
-  YELLOW=""
-  BLUE=""
-  BOLD=""
-  NORMAL=""
+# Fallback colors.
+RED=""
+GREEN=""
+YELLOW=""
+BLUE=""
+BOLD=""
+NORMAL=""
+
+# check if interactive
+if [[ $- == *i* ]]; then
+    if which tput >/dev/null 2>&1; then
+        ncolors=$(tput colors)
+        if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+          RED="$(tput setaf 1)"
+          GREEN="$(tput setaf 2)"
+          YELLOW="$(tput setaf 3)"
+          BLUE="$(tput setaf 4)"
+          BOLD="$(tput bold)"
+          NORMAL="$(tput sgr0)"
+        fi
+    fi
 fi
 
 # Check if `zsh` is present.
@@ -72,7 +76,9 @@ for dot_folder in "${dot_folders[@]}"; do
   ln -s "$(pwd)/$dot_folder" ~/$dot_folder
 done
 
-reset
+# reset
+echo -e '\0033\0143'
+
 printf "${GREEN}"
 echo ''
 echo 'WELCOME'
@@ -92,7 +98,8 @@ printf "${BOLD}"
 echo '    $ brew tap homebrew/cask-fonts'
 echo '    $ brew cask install font-sourcecodepro-nerd-font'
 echo ''
-echo '${YELLOW}To install dart-lang server:'
+printf "${YELLOW}"
+echo 'To install dart-lang server:'
 printf "${BOLD}"
 echo '    $ pub global activate dart_language_server'
 echo ''
