@@ -72,7 +72,9 @@ for dot_folder in "${dot_folders[@]}"; do
   ln -s "$(pwd)/$dot_folder" ~/$dot_folder
 done
 
-reset
+# reset
+echo -e '\0033\0143'
+
 printf "${GREEN}"
 echo ''
 echo 'WELCOME'
