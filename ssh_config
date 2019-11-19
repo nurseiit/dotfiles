@@ -1,0 +1,24 @@
+# Nurseiit at Anna at unicss.org for CTFd
+Host anna.unicss.org
+  HostName anna.unicss.org
+  Preferredauthentications publickey
+  User student
+  IdentityFile ~/.ssh/anna
+
+# Birjik at Anna at unicss.org for CTFd
+Host anna.unicss.org-champ
+  HostName anna.unicss.org
+  Preferredauthentications password
+  User student
+
+# GitHub `nurseiit` account
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa
+
+#  GitHub `nvrk` account
+Host github.com-nvrk
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github-nvrk
