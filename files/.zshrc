@@ -1,6 +1,7 @@
 # ===============================================
-# PATH
+# PATHs
 # ===============================================
+
   export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Flutter
@@ -22,7 +23,17 @@
 # Conda
   export PATH="$HOME/miniconda3/bin:$PATH"
   
-# Path to 'oh-my-zsh' installation
+# Yarn
+  export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Metasploit
+  export PATH=$PATH:/opt/metasploit-framework/bin
+
+# ===============================================
+# Oh-My-Zsh
+# ===============================================
+
+# 'oh-my-zsh' installation
   export ZSH="$HOME/.oh-my-zsh"
 
 # Name of the theme to load
@@ -36,6 +47,20 @@
     git
   )
 
+source $ZSH/oh-my-zsh.sh
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ===============================================
+# Aliases
+# ===============================================
+
+alias anna='mosh --ssh="ssh -p 4329 -i /Users/nurs/.ssh/anna" student@anna.unicss.org'
+
+# ===============================================
+# Misc.
+# ===============================================
+
 # Bash Wrapper for jumpto
 jumpto () {
   JUMPOUT=`command jumpto "$@"`
@@ -48,12 +73,3 @@ jumpto () {
     echo "${JUMPOUT}"
   fi
 }
-
-source $ZSH/oh-my-zsh.sh
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-PATH=$PATH:/opt/metasploit-framework/bin
-export PATH=$PATH:/opt/metasploit-framework/bin
