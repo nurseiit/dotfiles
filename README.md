@@ -1,6 +1,6 @@
 ## All of my .*rc-s in one place!
 
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnurseiit%2Fbadge%3Fref%3Ddotfiles&style=flat)](https://actions-badge.atrox.dev/nurseiit/goto?ref=dotfiles)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnurseiit%2Fdotfiles%2Fbadge&style=flat)](https://actions-badge.atrox.dev/nurseiit/dotfiles/goto)
 
 ### How to use
 
