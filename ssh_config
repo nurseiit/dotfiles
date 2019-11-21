@@ -1,15 +1,17 @@
 # Nurseiit at Anna at unicss.org for CTFd
-Host anna.unicss.org
+Host anna-nurs
   HostName anna.unicss.org
   Preferredauthentications publickey
   User student
+  Port 4329
   IdentityFile ~/.ssh/anna
 
 # Birjik at Anna at unicss.org for CTFd
-Host anna.unicss.org-champ
+Host anna-birj
   HostName anna.unicss.org
   Preferredauthentications password
   User student
+  Port 4320
 
 # GitHub `nurseiit` account
 Host github.com
