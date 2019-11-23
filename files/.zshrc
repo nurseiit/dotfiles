@@ -21,7 +21,7 @@
   eval "$(rbenv init -)"
 
 # Conda
-  export PATH="$HOME/miniconda3/bin:$PATH"
+  export PATH="$HOME/.miniconda3/bin:$PATH"
   
 # Yarn
   export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
