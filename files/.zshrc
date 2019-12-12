@@ -57,6 +57,8 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias anna='mosh --ssh="ssh -p 4329 -i /Users/nurs/.ssh/anna" student@anna.unicss.org'
 
+alias yt-audio-list="youtube-dl -o '~/Downloads/YT/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -f bestaudio"
+
 # ===============================================
 # Misc.
 # ===============================================
