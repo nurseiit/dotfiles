@@ -7,11 +7,11 @@
 # Flutter
   export PATH=$HOME/Dev/flutter/bin:$PATH
 
+# Pub
+  export PATH=$HOME/Dev/flutter/.pub-cache/bin:$PATH
+
 # NodeJS
   export PATH="/usr/local/opt/node@10/bin:$PATH"
-
-# Pub
-  export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # Fastlane
   export PATH="$HOME/.fastlane/bin:$PATH"
