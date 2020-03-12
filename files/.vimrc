@@ -13,30 +13,37 @@ let g:flutter_hot_reload_on_save = 1
 
 call plug#begin()
 Plug 'sheerun/vim-polyglot'
+
 " Editing and Navigation
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sensible'
+Plug 'dense-analysis/ale'
+
 " Themes and Icons
 Plug 'mhartington/oceanic-next'
-Plug 'ryanoasis/vim-devicons'
 
-Plug 'tpope/vim-sensible'
-Plug 'scrooloose/nerdtree'
-Plug 'w0rp/ale'
-Plug 'pangloss/vim-javascript' " dependency for 'mxw/vim-jsx'
-Plug 'mxw/vim-jsx'
-" Plug 'mattn/emmet-vim'         " quick web/dev complete
 
 " Flutter Plugins
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 
-" Completion 'https://github.com/neoclide/coc.nvim'
-" Should have nodeJS installed
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Syntax for Firestore Rules
 Plug 'delphinus/vim-firestore'
+
+" Support for Elixir
+Plug 'slashmili/alchemist.vim'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 call plug#end()
+
+" Deoplete autocompletion
+let g:deoplete#enable_at_startup = 1
 
 " Theme
 syntax enable
@@ -46,12 +53,6 @@ if (has("termguicolors"))
 endif
 
 colorscheme OceanicNext
-set guifont=SauceCodePro_Nerd_Font:h11
-" colorscheme nova
-
-" run NERDTree on start-up and focus active window
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
 
 " Tab for Emmet completion, to work only in these FileTypes
 " autocmd FileType html,css,typescript,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -67,24 +68,26 @@ let g:ale_sign_error = '●'   " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0  " Less distracting when opening a new file
 
-let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \  'sh': ['shell'],
 \  'dart': ['language_server'],
 \  'javascript': ['eslint'],
-\  'typescript': ['eslint']
+\  'typescript': ['eslint'],
+\  'typescriptreact': ['eslint']
 \}
 let g:ale_fixers = {
 \  'dart': ['dartfmt'],
 \  'sh': ['shfmt'],
 \  'javascript': ['prettier', 'eslint'],
 \  'typescript': ['prettier', 'eslint'],
+\  'typescriptreact': ['prettier', 'eslint'],
 \  'json': ['prettier'],
 \  'markdown': ['prettier'],
 \  'yaml': ['prettier'],
-\  'css': ['prettier'],
+\  'css': ['prettier']
 \}
 let g:ale_echo_msg_format = '%linter% says %s'
+let g:ale_fix_on_save = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Core
@@ -117,6 +120,11 @@ set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
+
+let g:ale_completion_tsserver_autoimport = 1
 
 " Better display for messages
 set cmdheight=2
@@ -130,68 +138,6 @@ set shortmess+=c
 " always show signcolumns
 " set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Open a dialog for CocFix
-nnoremap <leader>cf :CocFix<cr>
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Flutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -201,3 +147,6 @@ nnoremap <leader>fq :FlutterQuit<cr>
 nnoremap <leader>fr :FlutterHotReload<cr>
 nnoremap <leader>fR :FlutterHotRestart<cr>
 nnoremap <leader>fD :FlutterVisualDebug<cr>
+
+" Elixir format on save
+autocmd BufWritePost *.exs,*.ex silent :!mix format %
