@@ -44,6 +44,10 @@ if command -v zsh >/dev/null 2>&1; then
     }
     ln -s "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
   fi
+else
+  printf "${RED}Error: zsh not found...${NORMAL}\n"
+  printf "${RED}Please install it to continue${NORMAL}\n"
+  exit 1
 fi
 
 echo "${BOLD}Symlinking dotfiles${NORMAL}"
@@ -81,26 +85,32 @@ echo -e '\0033\0143'
 
 printf "${GREEN}"
 echo ''
-echo 'WELCOME'
+echo 'WELCOME!'
 echo ''
-echo '  _   _       _   _    ____     ____    '
-echo ' | \ |"|   U |"|u| |U |  _"\ u / __"| u '
-echo '<|  \| |>   \| |\| | \| |_) |/<\___ \/  '
-echo 'U| |\  |u    | |_| |  |  _ <   u___) |  '
-echo ' |_| \_|    <<\___/   |_| \_\  |____/>> '
-echo ' ||   \\,-.(__) )(    //   \\_  )(  (__)'
-echo ' (_")  (_/     (__)  (__)  (__)(__)     '
-
+printf "${YELLOW}"
+echo 'ℹ️ First, install brew!'
+printf "${BOLD}"
+echo '    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"'
+printf "${NORMAL}"
 echo ''
 printf "${YELLOW}"
 echo 'ℹ️ You might wanna run these to install your fonts:'
 printf "${BOLD}"
 echo '    $ brew tap homebrew/cask-fonts'
 echo '    $ brew cask install font-sourcecodepro-nerd-font'
+printf "${NORMAL}"
 echo ''
 printf "${YELLOW}"
 echo 'To install dart-lang server:'
 printf "${BOLD}"
 echo '    $ pub global activate dart_language_server'
+printf "${NORMAL}"
+echo ''
+printf "${YELLOW}"
+echo 'More useful stuff:'
+printf "${BOLD}"
+echo '    $ brew cask install vimr'
+echo '    $ brew install node yarn'
+printf "${NORMAL}"
 echo ''
 
