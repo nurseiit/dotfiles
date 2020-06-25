@@ -15,13 +15,15 @@ call plug#begin()
 Plug 'sheerun/vim-polyglot'
 
 " Editing and Navigation
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
 
 " Themes and Icons
 Plug 'mhartington/oceanic-next'
-
+Plug 'ryanoasis/vim-devicons'
 
 " Flutter Plugins
 Plug 'dart-lang/dart-vim-plugin'
@@ -53,6 +55,10 @@ if (has("termguicolors"))
 endif
 
 colorscheme OceanicNext
+
+" run NERDTree on start-up and focus active window
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
 
 " Tab for Emmet completion, to work only in these FileTypes
 " autocmd FileType html,css,typescript,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -97,6 +103,10 @@ let g:ale_fix_on_save = 1
 " set number
 set relativenumber
 set cursorline
+
+" Remove bottom line in favour of vim-airline
+set nosmd   " short for 'showmode'
+set noru    " short for 'ruler'
 
 " Remove the .ext~ files, but not the swapfiles
 set nobackup
