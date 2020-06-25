@@ -1,17 +1,9 @@
-# Nurseiit at Anna at unicss.org for CTFd
-Host anna-nurs
-  HostName anna.unicss.org
+# gandalf
+Host gandalf
+  HostName vpn.devnur.me
   Preferredauthentications publickey
-  User student
-  Port 4329
-  IdentityFile ~/.ssh/anna
-
-# Birjik at Anna at unicss.org for CTFd
-Host anna-birj
-  HostName anna.unicss.org
-  Preferredauthentications password
-  User student
-  Port 4320
+  User root
+  IdentityFile ~/.ssh/gandalf
 
 # GitHub `nurseiit` account
 Host github.com
@@ -19,8 +11,9 @@ Host github.com
     User git
     IdentityFile ~/.ssh/id_rsa
 
-#  GitHub `nvrk` account
-Host github.com-nvrk
-    HostName github.com
+# Gitlab uni20172001 for OS
+Host gitlab.com
+    HostName gitlab.com
     User git
-    IdentityFile ~/.ssh/github-nvrk
+    IdentityFile ~/.ssh/os_rsa
+
