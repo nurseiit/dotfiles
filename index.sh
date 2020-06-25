@@ -56,6 +56,8 @@ dot_files=(
   ".zshrc"
   ".vimrc"
   ".gitconfig"
+  ".tmux.conf"
+  ".tmux.conf.local"
 )
 
 for dot_file in "${dot_files[@]}"; do
@@ -110,7 +112,7 @@ printf "${YELLOW}"
 echo 'More useful stuff:'
 printf "${BOLD}"
 echo '    $ brew cask install vimr'
-echo '    $ brew install node yarn'
+echo '    $ brew install tmux node yarn'
 printf "${NORMAL}"
 echo ''
 
