@@ -20,9 +20,6 @@
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 
-# Conda
-  export PATH="$HOME/.miniconda3/bin:$PATH"
-  
 # Yarn
   export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -80,3 +77,21 @@ jumpto () {
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/nurs/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/nurs/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/nurs/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/nurs/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Hack for tmux messing with conda env vars
+[[ -z $TMUX ]] || conda deactivate; conda activate base
