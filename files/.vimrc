@@ -1,33 +1,27 @@
 " Automatic installation for vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let g:flutter_hot_reload_on_save = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" ===> Plugins
 call plug#begin()
 Plug 'sheerun/vim-polyglot'
 
 " Editing and Navigation
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree' |
+      \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+      \ Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
 
-" Themes and Icons
-Plug 'mhartington/oceanic-next'
-Plug 'ryanoasis/vim-devicons'
-
-" Flutter Plugins
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
+" Theme
+Plug 'haishanh/night-owl.vim'
 
 " Syntax for Firestore Rules
 Plug 'delphinus/vim-firestore'
@@ -47,59 +41,69 @@ call plug#end()
 " Deoplete autocompletion
 let g:deoplete#enable_at_startup = 1
 
-" Theme
-syntax enable
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Git Status indicators in NERDTree
+let g:NERDTreeGitStatusUseNerdFonts = 1
+
+
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '-'
+
+" ===> Theme
 if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme OceanicNext
+syntax enable
+colorscheme night-owl
 
-" run NERDTree on start-up and focus active window
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+" ===> AutoCmd-s
+autocmd VimEnter * NERDTree " run NERDTree on start-u
+autocmd VimEnter * wincmd p " focus active window
 
-" Tab for Emmet completion, to work only in these FileTypes
-" autocmd FileType html,css,typescript,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-" Only allow Emmet in these FileTypes
-" let g:user_emmet_install_global = 0
-" autocmd FileType html,css,typescript,javascript.jsx EmmetInstall
+" Elixir format on save
+autocmd BufWritePost *.exs,*.ex silent :!mix format %
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ALE config
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" ===> ALE config
 let g:ale_sign_error = '●'   " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0  " Less distracting when opening a new file
 
 let g:ale_linters = {
-\  'sh': ['shell'],
-\  'dart': ['language_server'],
-\  'javascript': ['eslint'],
-\  'typescript': ['eslint'],
-\  'typescriptreact': ['eslint']
-\}
+      \  'sh': ['shell'],
+      \  'dart': ['language_server'],
+      \  'javascript': ['eslint'],
+      \  'typescript': ['eslint'],
+      \  'typescriptreact': ['eslint']
+      \}
 let g:ale_fixers = {
-\  'dart': ['dartfmt'],
-\  'sh': ['shfmt'],
-\  'javascript': ['prettier', 'eslint'],
-\  'typescript': ['prettier', 'eslint'],
-\  'typescriptreact': ['prettier', 'eslint'],
-\  'json': ['prettier'],
-\  'markdown': ['prettier'],
-\  'yaml': ['prettier'],
-\  'css': ['prettier']
-\}
+      \  'dart': ['dartfmt'],
+      \  'sh': ['shfmt'],
+      \  'javascript': ['prettier', 'eslint'],
+      \  'typescript': ['prettier', 'eslint'],
+      \  'typescriptreact': ['prettier', 'eslint'],
+      \  'json': ['prettier'],
+      \  'markdown': ['prettier'],
+      \  'yaml': ['prettier'],
+      \  'css': ['prettier']
+      \}
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:ale_fix_on_save = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Core
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ===> VIM Core
+let mapleader = ','
 
-" Lines
+" always show signcolumns
+set signcolumn=yes
+
 " set number
 set relativenumber
 set cursorline
@@ -127,12 +131,10 @@ set synmaxcol=200
 " Encoding
 set encoding=utf-8
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Completion
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ===> Completion
 call deoplete#custom#option('sources', {
-\ '_': ['ale'],
-\})
+      \ '_': ['ale'],
+      \})
 
 let g:ale_completion_tsserver_autoimport = 1
 
@@ -144,19 +146,3 @@ set updatetime=300
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
-
-" always show signcolumns
-" set signcolumn=yes
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Flutter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap <leader>fa :FlutterRun<cr>
-nnoremap <leader>fq :FlutterQuit<cr>
-nnoremap <leader>fr :FlutterHotReload<cr>
-nnoremap <leader>fR :FlutterHotRestart<cr>
-nnoremap <leader>fD :FlutterVisualDebug<cr>
-
-" Elixir format on save
-autocmd BufWritePost *.exs,*.ex silent :!mix format %
